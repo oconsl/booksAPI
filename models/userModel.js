@@ -7,7 +7,6 @@ const userModel = new Schema({
     type: String,
     required: [true, "Ingrese un nombre valido."],
     match: [/^[a-zA-Z]+$/, "El nombre solo puede contener letras."],
-    trim: true,
   },
   lastName: {
     type: String,

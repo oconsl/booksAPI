@@ -1,0 +1,63 @@
+#get {
+    background-color: rgb(39, 167, 39);
+    border: solid 2px rgb(39, 167, 39);
+    color: white;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    font-weight: bold;
+    transition: 0.2s;
+    outline: none;
+}
+
+#delete {
+    background-color: rgb(151, 10, 10);
+    border: solid 2px rgb(151, 10, 10);
+    color: white;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    font-weight: bold;
+    transition: 0.2s;
+    outline: none;
+}
+
+#put {
+    background-color: rgb(26, 26, 190);
+    border: solid 2px rgb(26, 26, 190);
+    color: white;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    font-weight: bold;
+    transition: 0.2s;
+    outline: none;
+}
+
+#post {
+    background-color: rgb(224, 174, 8);
+    border: solid 2px rgb(224, 174, 8);
+    color: white;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    font-weight: bold;
+    transition: 0.2s;
+    outline: none;
+}
+
+#put:hover {
+    background-color: white;
+    color: rgb(26, 26, 190);
+    text-shadow: none;
+}
+
+#post:hover {
+    background-color: white;
+    color: rgb(224, 174, 8);
+    text-shadow: none;
+}
+
+#delete:hover {
+    background-color: white;
+    color: rgb(151, 10, 10);
+    text-shadow: none;
+}
+
+#get:hover {
+    background-color: white;
+    color: rgb(39, 167, 39);
+    text-shadow: none;
+}
