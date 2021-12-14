@@ -12,17 +12,6 @@ const userId = document.getElementById("user-id");
 async function postUser(evt) {
   evt.preventDefault();
 
-  if (
-    firstName.value === "" ||
-    lastName.value === "" ||
-    userName.value === "" ||
-    email.value === "" ||
-    password.value === "" ||
-    phone.value === "" ||
-    address.value === ""
-  )
-    alert("Complete los campos!");
-
   const sendBody = {
     firstName: firstName.value,
     lastName: lastName.value,
@@ -69,20 +58,19 @@ async function postUser(evt) {
 }
 
 async function getUsers(evt) {
-  if(evt !== null)
-    evt.preventDefault();
+  if (evt !== null) evt.preventDefault();
 
   const res = await fetch("/api/users");
   const users = await res.json();
 
   // ID menu
-  const selectIdMenu = document.getElementById('user-id');
-  // REMOVE childs! 
-  const childs = selectIdMenu.querySelectorAll('option');
-  childs.forEach(child => selectIdMenu.removeChild(child));
+  const selectIdMenu = document.getElementById("user-id");
+  // REMOVE childs!
+  const childs = selectIdMenu.querySelectorAll("option");
+  childs.forEach((child) => selectIdMenu.removeChild(child));
 
-  users.forEach(user => {
-    let opt = document.createElement('option');
+  users.forEach((user) => {
+    let opt = document.createElement("option");
     opt.value = user._id;
     opt.text = `${user.userName}`;
     selectIdMenu.appendChild(opt);
@@ -95,17 +83,6 @@ async function getUsers(evt) {
 
 async function putUserById(evt) {
   evt.preventDefault();
-
-  if (
-    firstName.value === "" ||
-    lastName.value === "" ||
-    userName.value === "" ||
-    email.value === "" ||
-    password.value === "" ||
-    phone.value === "" ||
-    address.value === ""
-  )
-    alert("Complete los campos!");
 
   const sendBody = {
     firstName: firstName.value,
@@ -123,7 +100,7 @@ async function putUserById(evt) {
       headers: {
         "Content-type": "application/json",
       },
-      body: JSON.stringify(sendBody)
+      body: JSON.stringify(sendBody),
     });
 
     console.log(res.status);
@@ -164,7 +141,7 @@ async function deleteUserById(evt) {
     },
   });
   getUsers(null);
-  
+
   alert("Usuario borrado!");
 }
 

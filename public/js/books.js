@@ -9,9 +9,6 @@ const bookId = document.getElementById("book-id");
 async function postBook(evt) {
   evt.preventDefault();
 
-  if (title.value === "" || genre.value === "" || author.value === "")
-    alert("Complete los campos!");
-
   const sendBody = {
     title: title.value,
     genre: genre.value,
@@ -28,7 +25,7 @@ async function postBook(evt) {
       body: JSON.stringify(sendBody),
     });
     getBooks(null);
-    
+
     alert("Libro guardado!");
   } catch (error) {
     alert(error);
@@ -37,8 +34,7 @@ async function postBook(evt) {
 }
 
 async function getBooks(evt) {
-  if(evt !== null)
-    evt.preventDefault();
+  if (evt !== null) evt.preventDefault();
 
   const res = await fetch("/api/books", {
     method: "GET",
@@ -47,17 +43,19 @@ async function getBooks(evt) {
     },
   });
   const books = await res.json();
-  
-  // ID menu
-  const selectIdMenu = document.getElementById('book-id');
-  // REMOVE childs! 
-  const childs = selectIdMenu.querySelectorAll('option');
-  childs.forEach(child => selectIdMenu.removeChild(child));
 
-  books.forEach(book => {
-    let opt = document.createElement('option');
+  // ID menu
+  const selectIdMenu = document.getElementById("book-id");
+  // REMOVE childs!
+  const childs = selectIdMenu.querySelectorAll("option");
+  childs.forEach((child) => selectIdMenu.removeChild(child));
+
+  books.forEach((book) => {
+    let opt = document.createElement("option");
     opt.value = book._id;
-    opt.text = `${book.title}, ${book.genre}, ${book.author}, ${book.read ? "LEÍDO." : "NO LEÍDO."}`;
+    opt.text = `${book.title}, ${book.genre}, ${book.author}, ${
+      book.read ? "LEÍDO." : "NO LEÍDO."
+    }`;
     selectIdMenu.appendChild(opt);
   });
 
