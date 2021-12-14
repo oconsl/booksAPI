@@ -33,8 +33,7 @@ const userController = (User) => {
   const putUserById = async (req, res) => {
     try {
       const { body } = req;
-      const user = new User(req.body);
-      await user.save();
+      
       const response = await User.updateOne(
         {
           _id: req.params.userId,
@@ -75,11 +74,21 @@ const userController = (User) => {
     res.status(202).json("The user has been deleted.");
   };
 
+  // GET user by ID
+  const getUserById = async (req, res) => {
+    const { params } = req;
+    const response = await User.findById(params.userId);
+
+    res.json(response);
+  };
+
+
   return {
     getUsers,
     postUser,
     putUserById,
     deleteUserById,
+    getUserById
   };
 };
 

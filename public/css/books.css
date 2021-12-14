@@ -84,7 +84,7 @@ body {
 }
 
 .center_div {
-  background-color: rgb(134, 100, 74);
+  background-color: rgba(134, 100, 74, 0.8);
   border-radius: 5px;
 }
 

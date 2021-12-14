@@ -19,6 +19,7 @@ const userModel = new Schema({
     required: [true, "Ingrese un usuario valido."],
     match: [/^[a-zA-Z0-9]+$/, "El usuario solo puede tener letras y números."],
     unique: true,
+    sparse: true,
   },
   password: {
     type: String,
@@ -29,19 +30,18 @@ const userModel = new Schema({
     required: [true, "Ingrese un email valido."],
     match: [/\S+@\S+\.\S+/, "El email debe tener un formato válido."],
     unique: true,
+    sparse: true,
   },
   address: {
     type: String,
     required: [true, "Ingrese una dirección valida."],
     trim: true,
-    unique: true,
   },
   phone: {
     type: String,
     required: [true, "Ingrese un teléfono valido."],
     match: [/^[0-9]+$/, "El teléfono solo puede tener números."],
     trim: true,
-    unique: true,
   },
 });
 

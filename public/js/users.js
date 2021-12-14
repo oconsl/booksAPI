@@ -58,6 +58,8 @@ async function postUser(evt) {
           alert(err.message);
         });
     } else {
+      getUsers(null);
+
       alert("Usuario guardado!");
     }
   } catch (error) {
@@ -67,15 +69,27 @@ async function postUser(evt) {
 }
 
 async function getUsers(evt) {
-  evt.preventDefault();
+  if(evt !== null)
+    evt.preventDefault();
 
   const res = await fetch("/api/users");
   const users = await res.json();
 
-  console.log(users);
+  // ID menu
+  const selectIdMenu = document.getElementById('user-id');
+  // REMOVE childs! 
+  const childs = selectIdMenu.querySelectorAll('option');
+  childs.forEach(child => selectIdMenu.removeChild(child));
+
+  users.forEach(user => {
+    let opt = document.createElement('option');
+    opt.value = user._id;
+    opt.text = `${user.userName}`;
+    selectIdMenu.appendChild(opt);
+  });
+
   const elements = users.map((book) => JSON.stringify(book, null, "    "));
 
-  console.log(elements);
   paragraph.innerText = elements;
 }
 
@@ -104,16 +118,18 @@ async function putUserById(evt) {
   };
 
   try {
-    const res = await fetch("/api/users/" + userId.value, {
+    const res = await fetch(`/api/users/${userId.value}`, {
       method: "PUT",
       headers: {
         "Content-type": "application/json",
       },
-      body: JSON.stringify(sendBody),
+      body: JSON.stringify(sendBody)
     });
 
+    console.log(res.status);
+
     if (res.status === 500) {
-      throw Error("Usuario, Dirección, Email o Teléfono repetido.");
+      throw Error("Usuario o Email repetido.");
     } else if (res.status === 400) {
       res
         .text()
@@ -128,6 +144,8 @@ async function putUserById(evt) {
           alert(err.message);
         });
     } else {
+      getUsers(null);
+
       alert("Usuario guardado!");
     }
   } catch (error) {
@@ -145,7 +163,8 @@ async function deleteUserById(evt) {
       "Content-type": "application/json",
     },
   });
-
+  getUsers(null);
+  
   alert("Usuario borrado!");
 }
 

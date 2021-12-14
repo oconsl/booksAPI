@@ -27,9 +27,8 @@ async function postBook(evt) {
       },
       body: JSON.stringify(sendBody),
     });
-    const bookAdded = await res.json();
-
-    console.log(bookAdded);
+    getBooks(null);
+    
     alert("Libro guardado!");
   } catch (error) {
     alert(error);
@@ -38,7 +37,8 @@ async function postBook(evt) {
 }
 
 async function getBooks(evt) {
-  evt.preventDefault();
+  if(evt !== null)
+    evt.preventDefault();
 
   const res = await fetch("/api/books", {
     method: "GET",
@@ -47,8 +47,20 @@ async function getBooks(evt) {
     },
   });
   const books = await res.json();
+  
+  // ID menu
+  const selectIdMenu = document.getElementById('book-id');
+  // REMOVE childs! 
+  const childs = selectIdMenu.querySelectorAll('option');
+  childs.forEach(child => selectIdMenu.removeChild(child));
 
-  console.log(books);
+  books.forEach(book => {
+    let opt = document.createElement('option');
+    opt.value = book._id;
+    opt.text = `${book.title}, ${book.genre}, ${book.author}, ${book.read ? "LEÍDO." : "NO LEÍDO."}`;
+    selectIdMenu.appendChild(opt);
+  });
+
   const elements = books.map((book) => JSON.stringify(book, null, "    "));
 
   paragraph.innerText = elements;
@@ -63,6 +75,7 @@ async function deleteBookById(evt) {
       "Content-type": "application/json",
     },
   });
+  getBooks(null);
 
   alert("Libro borrado!");
 }
@@ -84,6 +97,7 @@ async function putBookById(evt) {
     },
     body: JSON.stringify(sendBody),
   });
+  getBooks(null);
 
   alert("Libro modificado!");
 }
