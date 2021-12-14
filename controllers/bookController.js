@@ -6,6 +6,7 @@ const bookController = (Book) => {
 
     res.json(response);
   };
+
   // POST book
   const postBook = async (req, res) => {
     const book = new Book(req.body);
@@ -13,6 +14,7 @@ const bookController = (Book) => {
     await book.save();
     res.json(book);
   };
+
   // GET book by ID
   const getBookById = async (req, res) => {
     const { params } = req;
@@ -20,6 +22,7 @@ const bookController = (Book) => {
 
     res.json(response);
   };
+
   // PUT book by ID
   const putBookById = async (req, res) => {
     const { body } = req;
@@ -38,7 +41,8 @@ const bookController = (Book) => {
     );
     res.json(response);
   };
-  // DELET book by ID
+
+  // DELETE book by ID
   const deleteBookById = async (req, res) => {
     const id = req.params.bookId;
 
