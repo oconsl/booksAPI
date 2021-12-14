@@ -15,7 +15,6 @@ const userController = (User) => {
 
       res.json(user);
     } catch (error) {
-      console.log(error);
       if (error.name === "ValidationError") {
         let errors = {};
 
@@ -33,7 +32,7 @@ const userController = (User) => {
   const putUserById = async (req, res) => {
     try {
       const { body } = req;
-      
+
       const response = await User.updateOne(
         {
           _id: req.params.userId,
@@ -82,13 +81,12 @@ const userController = (User) => {
     res.json(response);
   };
 
-
   return {
     getUsers,
     postUser,
     putUserById,
     deleteUserById,
-    getUserById
+    getUserById,
   };
 };
 

@@ -76,11 +76,12 @@ body {
   width: 80%;
 }
 
-#post,
-#get,
-#delete,
-#put {
-  flex: 1;
+#post:focus,
+#get:focus,
+#delete:focus,
+#put:focus,
+a:focus {
+  box-shadow: none;
 }
 
 .center_div {

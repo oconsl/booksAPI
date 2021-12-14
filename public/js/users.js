@@ -103,8 +103,6 @@ async function putUserById(evt) {
       body: JSON.stringify(sendBody),
     });
 
-    console.log(res.status);
-
     if (res.status === 500) {
       throw Error("Usuario o Email repetido.");
     } else if (res.status === 400) {
